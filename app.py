@@ -3,7 +3,7 @@ from pywebio.input import *
 from pywebio.output import *
 from pywebio import SessionClosedException
 from flask import Flask
-from pywebio.platformm.flask import webio_view
+from pywebio.platform.flask import webio_view
 
 app=Flask(__name__)
 
