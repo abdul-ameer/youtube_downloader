@@ -5,7 +5,7 @@ from pywebio import SessionClosedException
 from flask import Flask
 from pywebio.platform.flask import webio_view
 import argparse
-import pywebio import start_server
+from pywebio import start_server
 
 app=Flask(__name__)
 
