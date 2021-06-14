@@ -1,1 +1,1 @@
-web: gunicorn bmicalculator:youtube
+web: gunicorn app:app
