@@ -2,7 +2,7 @@ from pytube import YouTube
 from pywebio.input import *
 from pywebio.output import *
 
-def bmicalculator():
+def app():
     link=input("Enter YouTube Link: ")
     yt=YouTube(link)
     yt.streams.first().download()
@@ -12,4 +12,4 @@ def bmicalculator():
         
     
 if __name__=='__main__':
-    bmicalculator()
+    app()
