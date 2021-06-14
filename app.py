@@ -4,6 +4,8 @@ from pywebio.output import *
 from pywebio import SessionClosedException
 from flask import Flask
 from pywebio.platform.flask import webio_view
+import argparse
+import pywebio import start_server
 
 app=Flask(__name__)
 
@@ -15,6 +17,12 @@ def predict():
 
         
 app.add_url_rule('/myapp','webio_view',webio_view(predict),methods=['GET','POST','options'])  
-app.run(host="localhost",port=80)
+if __name__=='__main__':
+    parser=argparse.ArgumentParse()
+    parser.add_argument("-p","--port",type=int,default=8080)
+    args=parser.parse_args()
+    
+    start_server(predict,port=args.port())
+#pp.run(host="localhost",port=80)
  
         
