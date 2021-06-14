@@ -10,7 +10,7 @@ from pywebio import start_server
 app=Flask(__name__)
 
 def predict():
-    link=input("Enter YouTube Link: ")
+    link=input("Enter YouTube Link: ",type=TEXT)
     yt=YouTube(link)
     yt.streams.first().download()
     popup('Download Complete')
