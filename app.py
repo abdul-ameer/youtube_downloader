@@ -8,7 +8,6 @@ def app():
     yt=YouTube(link)
     yt.streams.first().download()
     popup('Download Complete')
-    return
 
         
     
