@@ -18,7 +18,7 @@ def predict():
         
 app.add_url_rule('/myapp','webio_view',webio_view(predict),methods=['GET','POST','options'])  
 if __name__=='__main__':
-    parser=argparse.ArgumentParse()
+    parser=argparse.ArgumentParser()
     parser.add_argument("-p","--port",type=int,default=8080)
     args=parser.parse_args()
     
