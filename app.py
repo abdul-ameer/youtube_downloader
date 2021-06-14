@@ -2,18 +2,19 @@ from pytube import YouTube
 from pywebio.input import *
 from pywebio.output import *
 from pywebio import SessionClosedException
+from flask import Flask
+from pywebio.platformm.flask import webio_view
 
-def app():
+app=Flask(__name__)
+
+def predict():
     link=input("Enter YouTube Link: ")
     yt=YouTube(link)
     yt.streams.first().download()
     popup('Download Complete')
 
         
-    
-if __name__=='__main__':
-    try:
-        app()
-    except SessionClosedException:
-        print("The Session was Closed Unexpectedly")
+app.add_url_rule('/myapp','webio_view',webio_view(predict),methods=['GET','POST','options'])  
+app.run(host="localhost",port=80)
+ 
         
