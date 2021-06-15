@@ -1,30 +1,23 @@
+from flask import Flask, render_template, request
 from pytube import YouTube
-from pywebio.input import *
-from pywebio.output import *
-from pywebio import SessionClosedException
-from flask import Flask
-from pywebio.platform.flask import webio_view
-import argparse
-from pywebio import start_server
 
-app=Flask(__name__)
+app = Flask(__name__)
+@app.route('/',methods=['GET'])
+def Home():
+    return render_template('index.html')
 
+@app.route("/predict", methods=['POST'])
 def predict():
-    link=input("Enter YouTube Link: ",type=TEXT)
-    yt=YouTube(link)
-    yt.streams.first().download()
-    popup('Download Complete')
-    break
+    if request.method == 'POST':
+        link = str(request.form['Youtube Downloader'])
+        yt=YouTube(link)
+        yt.streams.first().download()
+        #popup('Download Complete')
+        return render_template('index.html',prediction_text="Download Complete Have a LOOK")
+    else:
+        return render_template('index.html')
 
-        
-app.add_url_rule('/myapp','webio_view',type=str,webio_view(predict),methods=['GET','POST','options'])  
-
-if __name__=='__main__':
-    parser=argparse.ArgumentParser()
-    parser.add_argument("-p","--port",default=8080)
-    args=parser.parse_args()
-    
-    start_server(predict,port=args.port())
-#pp.run(host="localhost",port=80)
+if __name__=="__main__":
+    app.run(debug=True)
  
         
